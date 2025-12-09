@@ -113,6 +113,10 @@ Note: The support for DeepSpeed under the Windows system is not perfect yet, we 
 
 <details>
 
+### SA1B Dataset
+
+We provide the distillation dataset used in the paper: [WHU Building Dataset](https://ai.meta.com/datasets/segment-anything/). The SA1B dataset is the dataset of SAM, containing over 11 million images
+
 ### Basic Instance Segmentation Dataset
 
 We provide the instance segmentation dataset preparation method used in the paper.
@@ -276,6 +280,9 @@ python zero_to_fp32.py . $SAVE_CHECKPOINT_NAME -t $CHECKPOINT_DIR  # $SAVE_CHECK
 
 If you encounter the error `Bad substitution` when running `dist_train.sh`, please use `bash dist_train.sh` to run the script.
 
+### 4. How can better results be achieved
+
+This model is not suitable for datasets with multiple types of targets, especially when there are very few images for each type of target. It was designed for a small amount of data for a single type of target. After testing, it was found that multiple types can significantly lead to a decline in model performance. We have made great efforts to try, but we haven't succeeded in improving this. We are really very sorry about this. We also conducted some experiments. You can perform larger-scale distillation to obtain better pre-training parameters, or appropriately increase model parameters, or improve model performance through TTA, or try other models we provide in configs.
 
 </details>
 
